@@ -29,13 +29,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "cp **/target/*.war /home/robin/Downloads/apache-tomcat-staging/webapps"
+                        sh "cp /home/robin/project/maven-project/webapp/target/*.war /home/robin/Downloads/apache-tomcat-staging/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "cp **/target/*.war /home/robin/Downloads/apache-tomcat-prod/webapps"
+                        sh "cp /home/robin/project/maven-project/webapp/target/*.war /home/robin/Downloads/apache-tomcat-prod/webapps"
                     }
                 }
             }
