@@ -20,7 +20,7 @@ stages{
             post {
                 success {
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '/var/lib/jenkins/workspace/FullyAutomated/webapp/target/*.war'
+                    archiveArtifacts artifacts: 'webapp/target/*.war'
                 }
             }
         }
@@ -29,13 +29,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/*.war /home/robin/Downloads/apache-tomcat-staging/webapps/"
+                        sh "cp webapp/target/*.war /home/robin/Downloads/apache-tomcat-staging/webapps/"
                     }
                 }
 
                 stage ('Deploy to Production'){
                     steps {
-                        sh "cp /var/lib/jenkins/workspace/FullyAutomated/webapp/target/*.war /home/robin/Downloads/apache-tomcat-prod/webapps/"
+                        sh "cp webapp/target/*.war /home/robin/Downloads/apache-tomcat-prod/webapps/"
                     }
                 }
             }
