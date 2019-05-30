@@ -33,7 +33,7 @@ stages{
                     }
                 }
 
-                stage ("Deploy to Production"){
+                stage ('Deploy to Production'){
                     steps {
                         sh "cp /home/robin/project/maven-project/webapp/target/*.war /home/robin/Downloads/apache-tomcat-prod/webapps/"
                     }
