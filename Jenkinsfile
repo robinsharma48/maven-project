@@ -3,9 +3,9 @@ pipeline {
     tools{
 		maven 'localMAVEN'
 	}
-parameters {
-         string(name: 'tomcat_dev', defaultValue: '35.154.129.27', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: '13.235.76.174', description: 'Production Server')
+	parameters {
+		string(name: 'tomcat_dev', defaultValue: '35.154.129.27', description: 'Staging Server')
+         	string(name: 'tomcat_prod', defaultValue: '13.235.76.174', description: 'Production Server')
     }
 
     triggers {
