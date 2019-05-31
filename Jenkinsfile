@@ -29,15 +29,15 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-			sh "chmod 400 /home/robin/tomcat-demo.pem"	
-			sh "scp -i /home/robin/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
+			sh "sudo chmod 400 /home/robin/tomcat-demo.pem"	
+			sh "sudo scp -i /home/robin/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ('Deploy to Production'){
                     steps {
-			sh "chmod 400 /home/robin/tomcat-demo.pem"	
-                        sh "scp -i /home/robin/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
+			sh "sudo chmod 400 /home/robin/tomcat-demo.pem"	
+                        sh "sudo scp -i /home/robin/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
