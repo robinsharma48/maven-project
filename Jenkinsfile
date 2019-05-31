@@ -4,8 +4,8 @@ pipeline {
 		maven 'localMAVEN'
 	}
 parameters {
-         string(name: 'tomcat_stage', defaultValue: 'localhost:8090', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: 'localhost:9090', description: 'Production Server')
+         string(name: 'tomcat_dev', defaultValue: '35.154.129.27', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: '13.235.76.174', description: 'Production Server')
     }
 
     triggers {
@@ -29,13 +29,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "cp **/target/*.war /home/robin/Downloads/apache-tomcat-staging/webapps/"
+			sh "scp -i /home/robin/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat7/webapps"
                     }
                 }
 
                 stage ('Deploy to Production'){
                     steps {
-                        sh "cp **/target/*.war /home/robin/Downloads/apache-tomcat-prod/webapps/"
+                        sh "scp -i /home/robin/tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat7/webapps"
                     }
                 }
             }
