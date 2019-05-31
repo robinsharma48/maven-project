@@ -20,7 +20,7 @@ stages{
             post {
                 success {
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '/home/jenkins/*.war'
+                    archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
@@ -30,6 +30,7 @@ stages{
                 stage ('Deploy to Staging'){
                     steps {
 			sh "whoami"
+			sh "cp **/target/*.war /home/jenkins/"
 			sh "scp -i /home/jenkins/tomcat-demo.pem -o StrictHostKeyChecking=no /home/jenkins/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
                     }
                 }
