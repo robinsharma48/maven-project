@@ -31,14 +31,15 @@ stages{
                 stage ('Deploy to Staging'){
                     steps {
 			sh "whoami"
-			sh "scp -i /home/jenkins/tomcat-demo.pem -o StrictHostKeyChecking=no /home/jenkins/*.war ec2-user@${params.tomcat_dev}:
+			sh "scp -i /home/jenkins/tomcat-demo.pem -o StrictHostKeyChecking=no /home/jenkins/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user
 			sh "cp /home/ec2-user/webapp.war /var/lib/tomcat/webapps"
                     }
                 }
 
                 stage ('Deploy to Production'){
                     steps {
-                        sh "scp -i /home/jenkins/tomcat-demo.pem -o StrictHostKeyChecking=no /home/jenkins/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                        sh "scp -i /home/jenkins/tomcat-demo.pem -o StrictHostKeyChecking=no /home/jenkins/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user
+			sh "cp /home/ec2-user/webapp.war /var/lib/tomcat/webapps"
                     }
                 }
             }
