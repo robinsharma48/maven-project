@@ -30,7 +30,7 @@ stages{
                 stage ('Deploy to Staging'){
                     steps {
 			sh "whoami"
-			sh "cp **/target/*.war /home/jenkins/"
+			sh "cp /home/robin/project/maven-project/webapp/target/*.war /home/jenkins/"
 			sh "scp -i /home/jenkins/tomcat-demo.pem -o StrictHostKeyChecking=no /home/jenkins/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
                     }
                 }
